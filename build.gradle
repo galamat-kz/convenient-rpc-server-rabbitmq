@@ -1,0 +1,73 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'kz.galamat'
+version = '0.0.2'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://github.com/galamat-kz/mvn-repo/raw/main"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'kz.galamat:convenient-rpc-interface:0.0.7'
+    implementation 'kz.galamat:convenient-rpc-rabbitmq-settings:0.0.3'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'convenient-rpc-server-rabbitmq'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Convenient Rpc Rabbitmq settings'
+                description = 'Convenient Rpc Rabbitmq: properies, queues and containers'
+                developers {
+                    developer {
+                        id = 'yersinKZ'
+                        name = 'Yersin Mukay'
+                        email = 'mukaiyersin@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHub-mvn-repo"
+            url = "file:///Users/yersinmukay/IdeaProjects/galamat-kz-mvn-repo"
+        }
+    }
+}

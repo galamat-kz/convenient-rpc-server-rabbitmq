@@ -1,0 +1,9 @@
+spring:
+  convenient:
+    rpc:
+      rabbitmq:
+        queue: unknown-service-queue
+        append-random-for-reply-queue-name: false
+        reply-queue-prefix: unknown-service-reply-queue
+        exchange: rpc-exchange
+        replyTimeout: 5000

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+kz.galamat.convenient.rpc.server.rabbitmq.configurations.SpringAutoConfiguration
