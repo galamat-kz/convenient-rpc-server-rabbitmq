@@ -24,21 +24,22 @@ public class RpcForwardAsServletService implements RpcForwardService {
 
     @SneakyThrows
     @Override
-    public void forward(RpcRequest rpcRequest, OutputStream responseOutputStream) {
+    public void forward(final RpcRequest rpcRequest, final OutputStream responseOutputStream) {
         final ObjectMapper objectMapper = new ObjectMapper();
         // servlet request
-        ByteArrayInputStream bodyAsInputStream = new ByteArrayInputStream(
+        final ByteArrayInputStream bodyAsInputStream = new ByteArrayInputStream(
                 objectMapper.writeValueAsBytes(rpcRequest.getBody()));
-        InternalHttpRequest servletRequest = InternalHttpRequest.builder()
+        final InternalHttpRequest servletRequest = InternalHttpRequest.builder()
                 .path(rpcRequest.getPath())
                 .method(rpcRequest.getMethod())
+                .headers(rpcRequest.getHeaders())
                 .servletInputStream(bodyAsInputStream)
                 .bufferedReader(bodyAsInputStream)
                 .queryParams(rpcRequest.getQueryParams())
                 .build();
         servletRequest.init();
         // servlet response
-        InternalHttpResponse servletResponse = InternalHttpResponse.builder()
+        final InternalHttpResponse servletResponse = InternalHttpResponse.builder()
                 .servletOutputStream(responseOutputStream)
                 .printWriter(responseOutputStream)
                 .build();

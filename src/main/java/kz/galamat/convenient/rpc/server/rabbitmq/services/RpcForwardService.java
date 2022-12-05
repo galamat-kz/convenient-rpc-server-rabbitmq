@@ -9,6 +9,6 @@ import java.io.OutputStream;
  */
 public interface RpcForwardService {
 
-    void forward(RpcRequest rpcRequest, OutputStream responseOutputStream);
+    void forward(final RpcRequest rpcRequest, final OutputStream responseOutputStream);
 
 }

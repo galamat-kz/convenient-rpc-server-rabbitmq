@@ -14,7 +14,7 @@ public class AmqpMessageToRpcRequestConverter implements MessageToRpcRequestConv
     @Override
     public RpcRequest convert(Message message) {
         // convert message to rpcRequest
-        ObjectMapper objectMapper = new ObjectMapper();
+        final ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(message.getBody(), RpcRequest.class);
     }
 }

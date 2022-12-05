@@ -21,9 +21,9 @@ public class RpcResponseProcessService {
     private final RpcForwardService rpcForwardService;
 
     @SneakyThrows
-    public byte[] process(RpcRequest rpcRequest) {
+    public byte[] process(final RpcRequest rpcRequest) {
         try {
-            ByteArrayOutputStream responseOutputStream = new ByteArrayOutputStream();
+            final ByteArrayOutputStream responseOutputStream = new ByteArrayOutputStream();
             rpcForwardService.forward(rpcRequest, responseOutputStream);
             return responseOutputStream.toByteArray();
         } catch (Throwable t) {
@@ -32,12 +32,12 @@ public class RpcResponseProcessService {
             if (t instanceof RpcForwardException rpcForwardException) {
                 status = rpcForwardException.getStatus() >= 400 ? rpcForwardException.getStatus() : status;
             }
-            RpcErrorResponse errorResponseDto = RpcErrorResponse.builder()
+            final RpcErrorResponse errorResponseDto = RpcErrorResponse.builder()
                     .status(status)
                     .error(t.getClass().getName())
                     .message(t.getMessage())
                     .build();
-            ObjectMapper objectMapper = new ObjectMapper();
+            final ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsBytes(errorResponseDto);
         }
     }

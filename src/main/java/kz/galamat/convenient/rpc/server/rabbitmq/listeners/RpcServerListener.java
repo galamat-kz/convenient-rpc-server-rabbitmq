@@ -30,9 +30,9 @@ public class RpcServerListener {
         CorrelationData correlationData = new CorrelationData(message.getMessageProperties().getCorrelationId());
         try {
             // convert message to rpcRequest
-            RpcRequest rpcRequest = toRpcRequestConverter.convert(message);
-            // process the incoming request and respond
-            byte[] reply = rpcResponseProcessService.process(rpcRequest);
+            final RpcRequest rpcRequest = toRpcRequestConverter.convert(message);
+            // process the incoming request and respond to it
+            final byte[] reply = rpcResponseProcessService.process(rpcRequest);
             // replyMessage and correlationData
             Message replyMessage = MessageBuilder
                     .withBody(reply)
