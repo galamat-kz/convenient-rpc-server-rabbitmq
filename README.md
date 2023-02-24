@@ -164,7 +164,11 @@ public class RpcController {
 }
 
 ```
-
+### build.gradle
+```
+    implementation 'kz.galamat:convenient-rpc-client-rabbitmq:0.0.12'
+    implementation 'kz.galamat:convenient-rpc-interface:0.0.8'
+```
 
 ## MIT License
 
