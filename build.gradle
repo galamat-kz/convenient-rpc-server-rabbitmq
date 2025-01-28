@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'kz.galamat'
-version = '0.0.4'
+version = '0.0.5'
 sourceCompatibility = '17'
 
 configurations {
@@ -67,7 +67,7 @@ publishing {
     repositories {
         maven {
             name = "GitHub-mvn-repo"
-            url = "file:///Users/yersinmukay/IdeaProjects/galamat-kz-mvn-repo"
+            url = "file:///home/abylay/IdeaProjects/galamat-kz-mvn-repo"
         }
     }
 }
