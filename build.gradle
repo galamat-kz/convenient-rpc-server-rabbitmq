@@ -26,7 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'kz.galamat:convenient-rpc-interface:0.0.8'
-    implementation 'kz.galamat:convenient-rpc-rabbitmq-settings:0.0.5'
+    implementation 'kz.galamat:convenient-rpc-rabbitmq-settings:0.0.6'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
